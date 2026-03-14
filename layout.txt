@@ -1,0 +1,10 @@
+python_ids/
+
+main.py           # Runs IDS
+sniffer.py        # Captures packets
+parser.py         # Extracts data
+detection.py      # Port scan, SYN flood, DNS detection
+alert.py          # Formats alerts
+logger.py         # Saves alerts to file
+blacklist.txt     # Malicious IP list
+config.py         # Settings and configurations
