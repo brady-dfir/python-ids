@@ -8,4 +8,4 @@ python_ids/
 ├── logger.py         # Saves alerts to a file
 ├── config.py         # Settings and configurations
 ├── blacklist.txt     # Malicious IP list
-└── __init__.py
+└── __init__.py       # Public interface (optional)
