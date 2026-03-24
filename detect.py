@@ -38,3 +38,12 @@ def detect_port_scan(src, dst, dport):
         entry["ports"] = set()
         entry["first_seen"] = now
 
+def detect_syn_flood(src, flags):
+    now = datetime.now()
+    entry = syn_data[src]
+    entry["syn_times"] = [
+        t for t in entry["syn_times"]
+        if (now - t).total_seconds() <= SYN_FLOOD_TIME_WINDOW
+    ]
+    syn_flag = flags & 0x02
+    ack_flag = flags & 0x10
