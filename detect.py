@@ -47,3 +47,16 @@ def detect_syn_flood(src, flags):
     ]
     syn_flag = flags & 0x02
     ack_flag = flags & 0x10
+
+    if syn_flag and not ack_flag:
+        entry["syn_times"].append(now)
+    if ack_flag:
+        entry["completed"] += 1
+    syn_count = len(entry["syn_times"])
+    completed = entry["completed"]
+    if syn_count >= SYN_FLOOD_SYN_THRESHOLD:
+        ratio = completed / syn_count if syn_count else 0
+        if ratio < SYN_FLOOD_MIN_SYN_ACK_RATIO:
+            log_alert(format_alert("ALERT", f"Possible SYN flood from {src}"))
+            entry["syn_times"] = []
+            entry["completed"] = 0
