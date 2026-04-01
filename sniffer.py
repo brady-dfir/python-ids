@@ -27,5 +27,7 @@ def handle_packet(pkt):
         detect_port_scan(src, dst, dport)
         detect_syn_flood(src, flags)
     if dns_query:
-        detect_suspicious_dns(src, dns_query)
+        detect_suspic_dns(src, dns_query)
 
+def start_sniffer():
+    sniff(iface = INTERFACE, prn = handle_packet, store = False)
