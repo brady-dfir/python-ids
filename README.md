@@ -6,17 +6,15 @@ VIPER is a lightweight Intrusion Detection System (IDS) built with python using 
 2026-03-14 09:21:03 [ALERT] Possible port scan from 192.168.1.55
 
 # Structure
-VIPER/
-│
-├── main.py           # Runs IDS
-├── sniffer.py        # Captures packets
-├── parser.py         # Extracts data
-├── detect.py         # Port scan, SYN flood, DNS detection
-├── alert.py          # Formats alerts
-├── logger.py         # Saves alerts to a file
-├── config.py         # Settings and configurations
-├── blacklist.txt     # Malicious IP list
-└── __init__.py       # Public interface (optional)
+main.py - Runs IDS
+sniffer.py - Captures packets
+parser.py - Extracts data
+detect.py - Port scan, SYN flood, DNS detection
+alert.py - Formats alerts
+logger.py - Saves alerts to a file
+config.py - Settings and configurations
+blacklist.txt - Malicious IP list
+__init__.py - Public interface
 
 ## Key Features
 
