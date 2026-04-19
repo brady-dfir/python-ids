@@ -60,3 +60,19 @@ def detect_syn_flood(src, flags):
             log_alert(format_alert("ALERT", f"Possible SYN flood from {src}"))
             entry["syn_times"] = []
             entry["completed"] = 0
+def detect_suspicious_dns(src, qname):
+    if not qname:
+        return
+    
+    domain_len = len(qname)
+    parts = qname.split(".")
+    tld = "." + parts[-1] if len(parts) > 1 else ""
+    reasons = []
+    if domain_len > MAX_DOMAIN_LENGTH:
+        reasons.append("long domain")
+    if len(parts) > MAX_SUBDOMAINS:
+        reasons.append("many subdomains")
+    if tld.lower() in SUSPICIOUS_TLDS:
+        reasons.append(f"suspicious TLD {tld}")
+    if reasons:
+        log_alert(format_alert("ALERT", f"Suspicious DNS query from {src} for {qname} ({', '.join(reasons)})"))
