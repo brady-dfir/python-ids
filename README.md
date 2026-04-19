@@ -28,9 +28,13 @@ Counts SYN packets per source and compares them to validated handshakes. Alert w
 Flags DNS queries with excessive domain lenght, too many subdomains, suspicious TLDs (.xyz, .top, .click)
 
 ### Malicious IP Detection
-Loads IPs from blacklist.txt and flags and alerts traffic that involves them.
+Loads IPs from blacklist.txt and flags and alerts traffic that involves them. IPs can be added to blacklist.txt
 
 ### Modular and Configurable
-Add new detectors by creating functions in detect.py and calling them from sniffer.py.
+Add new detectors by creating functions in detect.py and calling them from sniffer.py. All settings exist in config.py. Thresholds can be configured depending on the environment.
 
-## 
+## Installation
+pip install scapy
+
+python main.py (use sudo if using linux)
+
